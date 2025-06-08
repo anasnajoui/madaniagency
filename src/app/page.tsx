@@ -23,11 +23,11 @@ export default function Home() {
         <LogoCarouselSection />
       </div>
       <HormoziSection />
-
-      <ManifestoSectionTwo />
       <section id="vantaggi">
         <Features />
       </section>
+      <ManifestoSectionTwo />
+ 
       <section id="come-funziona" className="relative z-30 mt-16">
         <HowItWorks />
       </section>
