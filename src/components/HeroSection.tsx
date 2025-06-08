@@ -96,7 +96,7 @@ export function HeroSection() {
             <div className="flex flex-col items-center gap-2">
               <ShimmerButton className="flex items-center justify-center">
                 <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg">
-                  Scopri se puoi lavorare a percentuale →
+                  Qualificati ora →
                 </span>
               </ShimmerButton>
               <p className="text-xs text-muted-foreground">15 secondi stimati.</p>
