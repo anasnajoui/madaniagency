@@ -25,11 +25,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Madani Agency',
     description: 'Il tuo nuovo reparto vendite.',
-    url: 'https://madani.agency',
+    url: 'https://www.madani.agency',
     siteName: 'Madani Agency',
     images: [
       {
-        url: '/og-image.png', // This is the image that will show when sharing
+        url: 'https://www.madani.agency/og-image.png', // Correct www subdomain
         width: 1200,
         height: 630,
         alt: 'Madani Agency - Il tuo nuovo reparto vendite',
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Madani Agency',
     description: 'Il tuo nuovo reparto vendite.',
-    images: ['/og-image.png'],
+    images: ['https://www.madani.agency/og-image.png'], // Correct www subdomain
   },
 }
 
