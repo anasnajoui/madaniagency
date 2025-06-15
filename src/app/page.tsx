@@ -8,7 +8,8 @@ import { Footer } from '@/components/Footer'
 import { LogoCarouselSection } from '@/components/LogoCarouselSection'
 import { ManifestoSection } from '@/components/ManifestoSection'
 import { ManifestoSectionTwo } from '@/components/ManifestoSectionTwo'
-import { SuperSalesCTA } from '@/components/SuperSalesCTA'
+import QualificationCTA from '@/components/QualificationCTA'
+import LicenseAuthority from '@/components/LicenseAuthority'
 import { HeroSection } from '@/components/HeroSection'
 import { Navigation } from '@/components/Navigation'
 
@@ -22,16 +23,18 @@ export default function Home() {
       <div className="relative z-20 -mt-[400px]">
         <LogoCarouselSection />
       </div>
-      <HormoziSection />
+      <ManifestoSectionTwo />
       <section id="vantaggi">
         <Features />
       </section>
-      <ManifestoSectionTwo />
- 
       <section id="come-funziona" className="relative z-30 mt-16">
         <HowItWorks />
       </section>
-      <SuperSalesCTA />
+      <HormoziSection />
+      <LicenseAuthority />
+      <section id="qualificati">
+        <QualificationCTA />
+      </section>
       <section id="testimonianze" className="relative z-30 mt-16">
         <TestimonialSection />
       </section>

@@ -16,6 +16,15 @@ module.exports = {
   		},
   	},
   	extend: {
+  		fontFamily: {
+  			'inter': ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+  			'sans': ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+  		},
+  		fontSize: {
+  			'hero': ['clamp(2.5rem, 8vw, 4.5rem)', { lineHeight: '1.1', letterSpacing: '-0.025em' }],
+  			'banner': ['clamp(2rem, 6vw, 3.75rem)', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
+  			'section': ['clamp(1.75rem, 4vw, 3rem)', { lineHeight: '1.2', letterSpacing: '-0.02em' }],
+  		},
   		colors: {
   			border: "hsl(var(--border))",
   			input: "hsl(var(--input))",

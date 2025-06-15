@@ -37,9 +37,9 @@ export function ManifestoSectionTwo() {
               {/* LEFT: Le solite Agenzie Title */}
               <div className="relative z-20 flex items-center justify-center">
                 <div className="text-center space-y-2">
-                  <h3 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-regular leading-tight text-spektr-cyan-50">
-                    Con le solite Agenzie.
-                  </h3>
+                                  <h3 className="section-title mb-4">
+                  Con le solite Agenzie.
+                </h3>
                   <div className="relative z-30">
                     <AnimatedTextCycle 
                       words={[
@@ -208,7 +208,7 @@ export function ManifestoSectionTwo() {
             {/* RIGHT: Con Madani Title - order-1 on mobile, order-2 on lg+ */}
             <div className="relative z-20 flex items-center justify-center order-1 lg:order-2">
               <div className="text-center space-y-2">
-                <h3 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-regular leading-tight text-spektr-cyan-50">
+                <h3 className="section-title mb-4">
                   Con Madani.
                 </h3>
                 <div className="relative z-30">

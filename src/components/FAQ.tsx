@@ -6,28 +6,28 @@ import { Plus } from 'lucide-react'
 
 const faqs = [
   {
-    question: 'Come funziona il processo di lead generation?',
-    answer: 'Utilizziamo strategie multicanale personalizzate per il tuo settore. Creiamo campagne mirate su Meta, Google e LinkedIn, con contenuti che attraggono il tuo cliente ideale. Ogni lead viene pre-qualificato per verificare budget e interesse reale.'
+    question: 'Lavorate con qualsiasi tipo di business?',
+    answer: 'No. Siamo estremamente selettivi perché il nostro sistema richiede visione, struttura e volontà reale di crescere. Lavoriamo solo con business B2B o agenzie già attive, con un\'offerta chiara e ambizione concreta. Se ti qualifichi, sarà evidente già nella prima diagnosi.'
   },
   {
-    question: 'Quanto tempo serve per vedere i primi risultati?',
-    answer: 'I primi lead qualificati arrivano entro 2-3 settimane dall\'avvio delle campagne. I risultati sostanziali in termini di appuntamenti e vendite si vedono generalmente tra il secondo e terzo mese di collaborazione.'
+    question: 'Cosa ottenete per i vostri clienti?',
+    answer: 'Ci prendiamo la responsabilità di generare opportunità reali — non solo lead. Appuntamenti con potenziali clienti che corrispondono al tuo target, ottenuti con costi tra i più bassi del mercato, grazie a un\'infrastruttura automatizzata e scalabile. Ma non ci fermiamo lì: ti aiutiamo anche a convertirli in vendite.'
   },
   {
-    question: 'Quale budget minimo è necessario per iniziare?',
-    answer: 'Il nostro investimento parte da €2.500/mese per la gestione completa. Questo include la nostra fee e il budget pubblicitario. Per progetti più ampi, creiamo pacchetti personalizzati in base ai tuoi obiettivi.'
+    question: 'Siete un\'agenzia?',
+    answer: 'No. Siamo un\'estensione operativa del tuo team. Pensiamo come co-fondatori, agiamo come reparto growth interno, ottimizziamo come partner. Non prendiamo fee per far girare campagne: ci interessa l\'impatto che generiamo sul tuo fatturato.'
   },
   {
-    question: 'Gestite tutto voi o devo occuparmene personalmente?',
-    answer: 'Ci occupiamo di tutto: creazione campagne, gestione lead, qualificazione, prenotazione appuntamenti. Tu ricevi solo appuntamenti pronti per la vendita. Opzionalmente, possiamo anche formare il tuo team di vendita.'
+    question: 'Quanto costa lavorare con voi?',
+    answer: 'Dipende. Abbiamo tre modalità operative: Fee fissa mensile per il sistema e le campagne, Revenue share se esistono le condizioni, Hybrid se il tuo caso lo richiede. In ogni caso, si parte solo se il potenziale ROI è evidente da subito.'
   },
   {
-    question: 'Che garanzie offrite sui risultati?',
-    answer: 'Offriamo garanzia "Risultati o Rimborso" nei primi 90 giorni. Se non generiamo il numero di lead qualificati concordato, ricevi il rimborso completo. Inoltre, il pagamento è sempre posticipato ai risultati.'
+    question: 'Come funziona la diagnosi gratuita?',
+    answer: 'È una sessione strategica 1:1 dove analizziamo il tuo sistema di acquisizione e vendita. Se ti qualifichi, ti spieghiamo come potremmo intervenire. Se non ti qualifichi, ti lasciamo comunque con consigli pratici e zero pressioni.'
   },
   {
-    question: 'In che settori avete più esperienza?',
-    answer: 'Lavoriamo principalmente con servizi B2B: consulenze, software, coaching, agenzie, studi professionali, e-commerce. Abbiamo case study comprovati in oltre 15 settori diversi con crescite documentate.'
+    question: 'Chi ha già lavorato con voi?',
+    answer: 'Abbiamo collaborato con agenzie top, business strutturati, e realtà B2B che oggi crescono ogni mese con un sistema costruito insieme. In parallelo, il nostro metodo è già stato adottato da centinaia di agenzie italiane tramite Madani Academy.'
   }
 ]
 
@@ -90,7 +90,7 @@ export const FAQ = () => {
                   WebkitBackdropFilter: "blur(10px)",
                 }}
               >
-                <span className="text-blue-400 text-sm font-semibold tracking-wide">All the A's to your Q's</span>
+                <span className="text-blue-400 text-sm font-semibold tracking-wide">Domande Frequenti</span>
               </div>
             </div>
             
@@ -202,71 +202,7 @@ export const FAQ = () => {
             })}
           </motion.div>
 
-          {/* CTA Section */}
-          <motion.div 
-            className="mt-20 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 20 }}
-            transition={{ duration: 0.6, delay: 0.6, ease: [0.4, 0, 0.2, 1] }}
-          >
-            <div 
-              className="backdrop-blur-xl border rounded-3xl p-12 md:p-16"
-              style={{
-                background: "linear-gradient(135deg, rgba(59, 130, 246, 0.12) 0%, rgba(59, 130, 246, 0.08) 50%, rgba(59, 130, 246, 0.05) 100%)",
-                borderColor: 'rgba(59, 130, 246, 0.2)',
-                boxShadow: '0 0 30px rgba(59, 130, 246, 0.15), inset 0 0 40px rgba(59, 130, 246, 0.08)',
-                backdropFilter: "blur(20px)",
-                WebkitBackdropFilter: "blur(20px)",
-              }}
-            >
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                Hai altre domande?
-              </h3>
-              <p className="text-lg text-gray-300 mb-8 leading-relaxed">
-                Parla direttamente con un nostro esperto per una consulenza gratuita
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <motion.a
-                  href="https://calendly.com/madani-agency/30min"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-8 py-4 rounded-full font-semibold transition-all duration-200"
-                  style={{
-                    background: "linear-gradient(135deg, rgba(59, 130, 246, 1) 0%, rgba(37, 99, 235, 1) 100%)",
-                    color: 'white',
-                    boxShadow: '0 4px 20px rgba(59, 130, 246, 0.4)',
-                  }}
-                  whileHover={{ 
-                    scale: 1.02,
-                    boxShadow: '0 6px 25px rgba(59, 130, 246, 0.5)'
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  Prenota consulenza gratuita
-                </motion.a>
-                <motion.a
-                  href="https://wa.me/393347090974"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-8 py-4 border rounded-full font-semibold text-blue-400 transition-all duration-200"
-                  style={{
-                    borderColor: 'rgba(59, 130, 246, 0.4)',
-                    background: 'rgba(0, 0, 0, 0.3)',
-                  }}
-                  whileHover={{ 
-                    scale: 1.02,
-                    borderColor: 'rgba(59, 130, 246, 0.6)',
-                    background: 'rgba(59, 130, 246, 0.1)'
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  Scrivici su WhatsApp
-                </motion.a>
-              </div>
-            </div>
-          </motion.div>
+
         </div>
       </div>
 

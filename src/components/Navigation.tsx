@@ -9,8 +9,8 @@ export function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navItems = [
+    { name: 'Sistema all-in one', href: 'vantaggi' },
     { name: 'Come funziona', href: 'come-funziona' },
-    { name: 'Vantaggi', href: 'vantaggi' },
     { name: 'Testimonianze', href: 'testimonianze' },
     { name: 'FAQ', href: 'faq' },
   ];
@@ -100,10 +100,10 @@ export function Navigation() {
           {/* CTA Button */}
           <div className="hidden md:block">
             <button
-              onClick={() => scrollToSection('contatti')}
-              className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-blue-600 hover:to-blue-700 transition-all duration-200 transform hover:scale-105"
+              onClick={() => scrollToSection('qualificati')}
+              className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-2.5 rounded-lg text-sm font-semibold hover:from-blue-600 hover:to-blue-700 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
-              Contattaci
+              Qualificati Ora
             </button>
           </div>
 
@@ -163,10 +163,10 @@ export function Navigation() {
               </button>
             ))}
             <button
-              onClick={() => scrollToSection('contatti')}
-              className="bg-gradient-to-r from-blue-500 to-blue-600 text-white block px-4 py-2 rounded-lg text-sm font-medium hover:from-blue-600 hover:to-blue-700 transition-all duration-200 mt-4 w-full"
+              onClick={() => scrollToSection('qualificati')}
+              className="bg-gradient-to-r from-blue-500 to-blue-600 text-white block px-6 py-3 rounded-lg text-sm font-semibold hover:from-blue-600 hover:to-blue-700 transition-all duration-200 mt-4 w-full text-center shadow-lg"
             >
-              Contattaci
+              Qualificati Ora
             </button>
           </div>
         </div>

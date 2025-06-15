@@ -67,9 +67,9 @@ export function LogoCarouselSection() {
     <div className="pt-8 sm:pt-12 md:pt-16 lg:pt-20 pb-8 sm:pb-10 md:pb-12 lg:pb-16">
       <div className="mx-auto flex w-full max-w-screen-lg flex-col items-center space-y-6 sm:space-y-8 md:space-y-12 px-4 sm:px-6">
         <div className="text-center space-y-2 sm:space-y-3">
-          <GradientHeading variant="light" size="sm" className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight">
+          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl leading-tight text-center font-bold text-white tracking-tight">
             Lavoriamo già con i migliori in Italia
-          </GradientHeading>
+          </h2>
         </div>
 
         <div className="w-full flex justify-center pt-8 sm:pt-12 md:pt-16 pb-8 sm:pb-12 md:pb-16">

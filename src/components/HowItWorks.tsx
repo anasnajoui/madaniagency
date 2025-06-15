@@ -2,7 +2,8 @@
 
 import React, { useEffect, useState, useRef } from 'react'
 import { motion, useInView, useAnimation } from 'framer-motion'
-import { Zap, Filter, Handshake, TrendingUp, Calendar, Users, Target, CheckCircle } from 'lucide-react'
+import { ArrowRight, Play } from 'lucide-react'
+import { HeroTypography } from '@/components/ui/hero-typography'
 
 // Custom hook for number animation
 function useCountUp(target: number, duration: number = 2000, trigger: boolean = false) {
@@ -33,16 +34,51 @@ function useCountUp(target: number, duration: number = 2000, trigger: boolean = 
   return count
 }
 
+const processSteps = [
+  {
+    id: 'lead-gen',
+    title: "Lead Generation",
+    subtitle: "Acquisizione Clienti",
+    description: "Creiamo campagne di digital marketing mirate che attirano prospect qualificati nel tuo settore attraverso canali ottimizzati e strategie data-driven.",
+    emoji: "🎯",
+    bgGradient: "from-blue-500/8 via-cyan-500/4 to-transparent",
+    glowColor: "#3b82f6",
+    borderColor: "#3b82f6",
+    metrics: { value: 1500, label: "Lead generati mensilmente", unit: "+" }
+  },
+  {
+    id: 'appointments',
+    title: "Qualificazione & Appuntamenti",
+    subtitle: "Selezione Prospect",
+    description: "Filtriamo e qualifichiamo ogni lead per prenotare appuntamenti solo con prospect che hanno reale interesse e budget disponibile per acquistare.",
+    emoji: "📅",
+    bgGradient: "from-violet-500/8 via-purple-500/4 to-transparent",
+    glowColor: "#8b5cf6",
+    borderColor: "#8b5cf6",
+    metrics: { value: 85, label: "Tasso di qualificazione", unit: "%" }
+  },
+  {
+    id: 'sales',
+    title: "Chiusura Vendite",
+    subtitle: "Conversione Finale",
+    description: "Gestiamo le chiamate di vendita con script testati e formiamo il tuo team per massimizzare le conversioni e chiudere più contratti.",
+    emoji: "💰",
+    bgGradient: "from-emerald-500/8 via-green-500/4 to-transparent",
+    glowColor: "#10b981",
+    borderColor: "#10b981",
+    metrics: { value: 72, label: "Tasso di chiusura", unit: "%" }
+  }
+];
+
 export const HowItWorks = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
   const controls = useAnimation()
   
-  const leadCount = useCountUp(1500, 2000, isInView)
-  const qualificationRate = useCountUp(85, 1800, isInView)
-  const appointmentsCount = useCountUp(25, 1500, isInView)
-  const closingRate = useCountUp(72, 2200, isInView)
-  const salesCount = useCountUp(150, 2500, isInView)
+  // Animated metrics
+  const metrics = processSteps.map(step => 
+    useCountUp(step.metrics.value, 2000, isInView)
+  )
   
   useEffect(() => {
     if (isInView) {
@@ -50,393 +86,469 @@ export const HowItWorks = () => {
     }
   }, [isInView, controls])
 
+  // Refined animations
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1
+        staggerChildren: 0.12,
+        delayChildren: 0.3
       }
     }
   }
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 30, scale: 0.95 },
+    hidden: { opacity: 0, y: 15 },
     visible: {
       opacity: 1,
       y: 0,
-      scale: 1,
       transition: {
-        duration: 0.7,
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  }
+
+  const flowVariants = {
+    hidden: { scaleX: 0, opacity: 0 },
+    visible: {
+      scaleX: 1,
+      opacity: 1,
+      transition: {
+        duration: 1.5,
         ease: "easeOut"
       }
     }
   }
 
   return (
-    <section className="relative overflow-hidden" ref={ref}>
-      {/* Smooth transition gradient overlay */}
-      <div 
-        className="absolute top-0 left-0 right-0 h-16 pointer-events-none z-10"
-        style={{
-          background: "linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.3) 50%, black 100%)",
-          backdropFilter: "blur(8px)",
-          WebkitBackdropFilter: "blur(8px)",
-        }}
-      />
+    <>
+      <style>{`
+        @keyframes elegant-flow {
+          0%, 100% { 
+            background-position: 0% 50%;
+            filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.3));
+          }
+          50% { 
+            background-position: 100% 50%;
+            filter: drop-shadow(0 0 12px rgba(139, 92, 246, 0.4));
+          }
+        }
+        @keyframes card-shimmer {
+          0% { background-position: -200% 0; }
+          100% { background-position: 200% 0; }
+        }
+        @keyframes subtle-pulse {
+          0%, 100% { opacity: 0.6; }
+          50% { opacity: 1; }
+        }
+      `}</style>
       
-      <div className="py-16 sm:py-20 md:py-24 lg:py-28 bg-black relative">
-        {/* Enhanced Background Effects */}
-        <div className="absolute inset-0">
-          <motion.div 
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-3xl"
-            animate={{
-              scale: isInView ? [1, 1.1, 1] : 1,
-              opacity: isInView ? [0.1, 0.15, 0.1] : 0.1
-            }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <div className="absolute top-1/4 right-1/4 w-80 h-80 bg-orange-400/8 rounded-full blur-2xl"></div>
-          <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-green-500/8 rounded-full blur-2xl"></div>
+      <section 
+        className="relative overflow-hidden bg-black" 
+        ref={ref}
+        aria-labelledby="how-it-works-title"
+        role="region"
+      >
+        {/* Refined Background Effects */}
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-blue-500/3 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 right-1/4 w-[350px] h-[350px] bg-violet-500/3 rounded-full blur-3xl" />
+          <div className="absolute bottom-1/4 left-1/3 w-[300px] h-[300px] bg-emerald-500/3 rounded-full blur-3xl" />
         </div>
 
-        <div className="mx-auto max-w-6xl px-6 relative z-10">
-          {/* Enhanced Header */}
-          <motion.div 
-            className="text-center mb-8 space-y-4"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : -20 }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="inline-flex items-center justify-center mb-3">
-              <div className="px-4 py-2 bg-white/[0.06] border border-white/20 rounded-full backdrop-blur-sm">
-                <span className="text-white/90 text-sm font-medium tracking-wide">il nostro processo</span>
+        <div className="py-16 sm:py-20 md:py-24 lg:py-32 relative z-10">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            
+            {/* Header */}
+            <motion.div 
+              className="text-center mb-16 md:mb-20"
+              initial={{ opacity: 0, y: -15 }}
+              animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : -15 }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="inline-flex items-center justify-center mb-8">
+                <div 
+                  className="px-6 py-3 rounded-full border backdrop-blur-sm"
+                  style={{
+                    background: "linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%)",
+                    borderColor: 'rgba(59, 130, 246, 0.2)',
+                  }}
+                >
+                  <span className="text-blue-400 text-sm font-semibold tracking-wide">Processo Automatizzato</span>
+                </div>
+              </div>
+              
+              <h2 className="section-title text-white mb-8 text-center" id="how-it-works-title">
+                Come Funziona il
+                <span 
+                  className="block bg-clip-text text-transparent mt-3"
+                  style={{
+                    background: "linear-gradient(90deg, #3b82f6, #8b5cf6, #10b981)",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    filter: "drop-shadow(0 0 20px rgba(59, 130, 246, 0.3))"
+                  }}
+                >
+                  Sistema Madani
+                </span>
+              </h2>
+              
+              <p className="section-subtitle text-gray-300 max-w-4xl mx-auto text-center mb-16 leading-relaxed px-4">
+                Un processo automatizzato in 3 fasi che trasforma visitatori anonimi in clienti paganti attraverso un sistema testato e ottimizzato.
+              </p>
+
+              {/* System Stats */}
+              <div className="flex flex-wrap justify-center gap-12 md:gap-20 lg:gap-24">
+                <div className="text-center">
+                  <div className="text-3xl md:text-4xl lg:text-5xl font-black text-blue-400 mb-3">3</div>
+                  <div className="body-small text-gray-400 uppercase tracking-wider font-medium">Fasi</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl md:text-4xl lg:text-5xl font-black text-violet-400 mb-3">24/7</div>
+                  <div className="body-small text-gray-400 uppercase tracking-wider font-medium">Automatico</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl md:text-4xl lg:text-5xl font-black text-emerald-400 mb-3">∞</div>
+                  <div className="body-small text-gray-400 uppercase tracking-wider font-medium">Scalabile</div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Process Flow Container */}
+            <div className="relative max-w-6xl mx-auto mt-8">
+              
+              {/* Desktop Flow */}
+              <div className="hidden lg:block">
+                <div className="relative mb-16">
+                  
+                  {/* Elegant Flow Line */}
+                  <div className="relative h-12 mb-12" role="presentation" aria-hidden="true">
+                    {/* Background Track */}
+                    <div className="absolute top-1/2 left-8 right-8 h-0.5 transform -translate-y-1/2 bg-gray-800/30 rounded-full" />
+                    
+                    {/* Animated Flow */}
+                    <motion.div 
+                      className="absolute top-1/2 left-8 right-8 h-0.5 transform -translate-y-1/2 rounded-full z-10"
+                      style={{
+                        background: "linear-gradient(90deg, #3b82f6, #8b5cf6, #10b981)",
+                        backgroundSize: "200% 100%",
+                        animation: isInView ? 'elegant-flow 6s ease-in-out infinite' : 'none',
+                        boxShadow: "0 0 10px rgba(59, 130, 246, 0.4)"
+                      }}
+                      variants={flowVariants}
+                      initial="hidden"
+                      animate={controls}
+                    />
+                  </div>
+                  
+                  {/* Process Cards */}
+                  <motion.div 
+                    className="grid grid-cols-1 lg:grid-cols-3 gap-8"
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate={controls}
+                    role="list"
+                    aria-label="Process steps"
+                  >
+                    {processSteps.map((step, index) => (
+                      <motion.div
+                        key={step.id}
+                        className="group relative"
+                        variants={cardVariants}
+                        role="listitem"
+                      >
+                        {/* Connection Line */}
+                        <motion.div
+                          className="absolute w-0.5 h-12 z-20"
+                          style={{
+                            left: '50%',
+                            top: '-48px',
+                            transform: 'translateX(-50%)',
+                            background: `linear-gradient(180deg, ${step.glowColor}, transparent)`,
+                            animation: isInView ? 'subtle-pulse 3s ease-in-out infinite' : 'none'
+                          }}
+                          initial={{ scaleY: 0 }}
+                          animate={{ scaleY: 1 }}
+                          transition={{ delay: 1 + index * 0.1, duration: 0.4 }}
+                          aria-hidden="true"
+                        />
+
+                        {/* Card */}
+                        <div 
+                          className="relative overflow-hidden rounded-2xl border backdrop-blur-sm transition-all duration-300 min-h-[360px] group-hover:transform group-hover:scale-[1.02]"
+                          style={{
+                            background: "linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(30, 41, 59, 0.4) 50%, rgba(15, 23, 42, 0.6) 100%)",
+                            borderColor: `${step.glowColor}40`,
+                            boxShadow: `0 0 20px ${step.glowColor}10, 0 4px 20px rgba(0,0,0,0.2)`
+                          }}
+                          aria-labelledby={`step-${index + 1}-title`}
+                        >
+                          {/* Shimmer Overlay */}
+                          <div 
+                            className="absolute inset-0 opacity-20"
+                            style={{
+                              background: `linear-gradient(90deg, transparent 0%, ${step.glowColor}20 50%, transparent 100%)`,
+                              backgroundSize: "200% 100%",
+                              animation: 'card-shimmer 8s ease-in-out infinite'
+                            }}
+                          />
+
+                          {/* Content */}
+                          <div className="relative z-10 p-6 lg:p-8 h-full flex flex-col">
+                            
+                            {/* Header */}
+                            <div className="flex items-center gap-4 mb-6">
+                              <div 
+                                className="w-12 h-12 lg:w-14 lg:h-14 rounded-xl flex items-center justify-center border text-2xl lg:text-3xl flex-shrink-0"
+                                style={{
+                                  backgroundColor: `${step.glowColor}10`,
+                                  borderColor: `${step.glowColor}30`
+                                }}
+                                aria-hidden="true"
+                              >
+                                {step.emoji}
+                              </div>
+                              
+                              {/* Step Number */}
+                              <div 
+                                className="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm border flex-shrink-0"
+                                style={{
+                                  backgroundColor: step.glowColor,
+                                  borderColor: '#ffffff20',
+                                  boxShadow: `0 0 10px ${step.glowColor}40`
+                                }}
+                                aria-label={`Step ${index + 1}`}
+                              >
+                                {index + 1}
+                              </div>
+                            </div>
+                            
+                            {/* Process Info */}
+                            <div className="mb-4">
+                              <div className="ui-label text-gray-400 mb-2">
+                                {step.subtitle}
+                              </div>
+                              <h3 
+                                id={`step-${index + 1}-title`}
+                                className="text-lg lg:text-xl font-bold text-white leading-tight"
+                              >
+                                {step.title}
+                              </h3>
+                            </div>
+                            
+                            {/* Description */}
+                            <p className="body-medium text-gray-300 mb-6 flex-grow">
+                              {step.description}
+                            </p>
+                            
+                            {/* Metrics */}
+                            <div className="mt-auto">
+                              <div className="flex items-center justify-between mb-4">
+                                <div className="min-w-0 flex-1">
+                                  <div 
+                                    className="text-xl lg:text-2xl font-black"
+                                    style={{ 
+                                      color: step.glowColor,
+                                      filter: `drop-shadow(0 0 8px ${step.glowColor}40)`
+                                    }}
+                                    aria-label={`${metrics[index]}${step.metrics.unit} ${step.metrics.label}`}
+                                  >
+                                    {metrics[index]}{step.metrics.unit}
+                                  </div>
+                                  <div className="body-small text-gray-400">
+                                    {step.metrics.label}
+                                  </div>
+                                </div>
+                              </div>
+                              
+                              {/* Status Indicator */}
+                              <div className="flex items-center gap-2">
+                                <div 
+                                  className="w-2 h-2 rounded-full"
+                                  style={{ 
+                                    backgroundColor: step.glowColor,
+                                    animation: 'subtle-pulse 2s ease-in-out infinite'
+                                  }}
+                                  aria-hidden="true"
+                                />
+                                <span className="text-xs text-gray-400">
+                                  Sistema operativo
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                </div>
+              </div>
+              
+              {/* Mobile Flow - Vertical Timeline */}
+              <div className="lg:hidden">
+                <div className="relative px-4">
+                  {/* Vertical Timeline Line */}
+                  <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gray-800/30 rounded-full" role="presentation" aria-hidden="true" />
+                  
+                  {/* Animated Vertical Flow */}
+                  <motion.div
+                    className="absolute left-6 top-0 bottom-0 w-0.5 rounded-full z-10"
+                    style={{
+                      background: "linear-gradient(180deg, #3b82f6, #8b5cf6, #10b981)",
+                      boxShadow: "0 0 8px rgba(59, 130, 246, 0.4)"
+                    }}
+                    initial={{ scaleY: 0 }}
+                    animate={{ scaleY: isInView ? 1 : 0 }}
+                    transition={{ duration: 1.5, ease: "easeOut", delay: 0.3 }}
+                  />
+                
+                  {/* Mobile Cards */}
+                  <motion.div 
+                    className="space-y-12 relative ml-8"
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate={controls}
+                    role="list"
+                    aria-label="Process steps"
+                  >
+                    {processSteps.map((step, index) => (
+                      <motion.div
+                        key={step.id}
+                        className="relative"
+                        variants={cardVariants}
+                        role="listitem"
+                      >
+                        {/* Horizontal Connection Line */}
+                        <motion.div 
+                          className="absolute w-8 h-0.5 z-20"
+                          style={{
+                            left: '-32px',
+                            top: '20px',
+                            background: `linear-gradient(90deg, ${step.glowColor}, transparent)`,
+                            animation: isInView ? 'subtle-pulse 3s ease-in-out infinite' : 'none'
+                          }}
+                          initial={{ scaleX: 0 }}
+                          animate={{ scaleX: 1 }}
+                          transition={{ delay: 1 + index * 0.1, duration: 0.4 }}
+                          aria-hidden="true"
+                        />
+
+                        {/* Card */}
+                        <div 
+                          className="relative overflow-hidden rounded-xl border backdrop-blur-sm transition-all duration-200 min-h-[280px] w-full"
+                          style={{
+                            background: "linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(30, 41, 59, 0.4) 50%, rgba(15, 23, 42, 0.6) 100%)",
+                            borderColor: `${step.glowColor}40`,
+                            boxShadow: `0 0 15px ${step.glowColor}08, 0 4px 15px rgba(0,0,0,0.2)`
+                          }}
+                          aria-labelledby={`mobile-step-${index + 1}-title`}
+                        >
+                          {/* Shimmer Overlay */}
+                          <div 
+                            className="absolute inset-0 opacity-15"
+                            style={{
+                              background: `linear-gradient(90deg, transparent 0%, ${step.glowColor}20 50%, transparent 100%)`,
+                              backgroundSize: "200% 100%",
+                              animation: 'card-shimmer 8s ease-in-out infinite'
+                            }}
+                          />
+
+                          {/* Content */}
+                          <div className="relative z-10 p-5 h-full flex flex-col">
+                            
+                            {/* Header */}
+                            <div className="flex items-center gap-3 mb-4">
+                              <div 
+                                className="w-10 h-10 rounded-lg flex items-center justify-center border text-xl flex-shrink-0"
+                                style={{
+                                  backgroundColor: `${step.glowColor}10`,
+                                  borderColor: `${step.glowColor}30`
+                                }}
+                                aria-hidden="true"
+                              >
+                                {step.emoji}
+                              </div>
+                              
+                              {/* Step Number */}
+                              <div 
+                                className="w-7 h-7 rounded-full flex items-center justify-center text-white font-bold text-xs border flex-shrink-0"
+                                style={{
+                                  backgroundColor: step.glowColor,
+                                  borderColor: '#ffffff20',
+                                  boxShadow: `0 0 8px ${step.glowColor}40`
+                                }}
+                                aria-label={`Step ${index + 1}`}
+                              >
+                                {index + 1}
+                              </div>
+                            </div>
+
+                            {/* Process Info */}
+                            <div className="mb-3">
+                              <div className="ui-label text-gray-400 mb-1">
+                                {step.subtitle}
+                              </div>
+                              <h3 
+                                id={`mobile-step-${index + 1}-title`}
+                                className="text-base font-bold text-white leading-tight"
+                              >
+                                {step.title}
+                              </h3>
+                            </div>
+
+                            {/* Description */}
+                            <p className="body-medium text-gray-300 mb-4 flex-grow">
+                              {step.description}
+                            </p>
+                
+                            {/* Metrics */}
+                            <div className="mt-auto">
+                              <div className="flex items-center justify-between mb-3">
+                                <div className="min-w-0 flex-1">
+                                  <div 
+                                    className="text-lg font-black"
+                                    style={{ 
+                                      color: step.glowColor,
+                                      filter: `drop-shadow(0 0 6px ${step.glowColor}40)`
+                                    }}
+                                    aria-label={`${metrics[index]}${step.metrics.unit} ${step.metrics.label}`}
+                                  >
+                                    {metrics[index]}{step.metrics.unit}
+                                  </div>
+                                  <div className="text-xs text-gray-400 font-medium">
+                                    {step.metrics.label}
+                                  </div>
+                                </div>
+                              </div>
+
+                              {/* Status Indicator */}
+                              <div className="flex items-center gap-2">
+                                <div 
+                                  className="w-1.5 h-1.5 rounded-full"
+                                  style={{ 
+                                    backgroundColor: step.glowColor,
+                                    animation: 'subtle-pulse 2s ease-in-out infinite'
+                                  }}
+                                  aria-hidden="true"
+                                />
+                                <span className="text-xs text-gray-400">
+                                  Sistema operativo
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                </div>
               </div>
             </div>
-            
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tight">
-              Come trasformiamo
-              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"> lead in vendite</span>
-            </h2>
-            
-            <p className="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
-              Il nostro sistema in 3 fasi ti porta dai contatti freddi alle vendite chiuse, gestendo tutto il processo o formando il tuo team.
-            </p>
-          </motion.div>
-
-          {/* Three-Step Process Grid */}
-          <motion.div 
-            className="grid grid-cols-1 lg:grid-cols-3 gap-4 max-w-6xl mx-auto"
-            variants={containerVariants}
-            initial="hidden"
-            animate={controls}
-          >
-            
-            {/* Step 1: Lead Generation */}
-            <motion.div 
-              className="bg-gray-900/50 border border-white/10 backdrop-blur-xl hover:bg-gray-900/60 transition-all duration-500 rounded-2xl p-6 relative"
-              variants={cardVariants}
-            >
-              <div className="absolute top-4 right-4 w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
-                1
-              </div>
-              
-              <div className="flex items-center gap-3 mb-4">
-                <motion.div 
-                  className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-blue-500/20 border border-blue-500/30"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Zap className="w-5 h-5 text-blue-400" />
-                </motion.div>
-                <div className="flex items-center gap-2">
-                  <Target className="w-4 h-4 text-blue-400/60" />
-                  <TrendingUp className="w-4 h-4 text-green-400/60" />
-                </div>
-              </div>
-              
-              <div className="mb-4">
-                <span className="text-blue-400 text-sm font-medium uppercase tracking-wide">generazione</span>
-              </div>
-              
-              <h3 className="text-xl font-bold text-white mb-3 leading-tight">
-                Generiamo Lead Qualificati
-              </h3>
-              
-              <p className="text-gray-400 text-sm mb-6 leading-relaxed">
-                Creiamo campagne mirate per attirare prospect interessati ai tuoi servizi, usando strategie avanzate di targeting e content marketing.
-              </p>
-              
-              {/* Animated Funnel */}
-              <div className="flex justify-center mb-6">
-                <div className="relative">
-                  <motion.div 
-                    className="w-16 h-12 bg-gradient-to-b from-blue-400 to-blue-600 rounded-t-2xl shadow-lg"
-                    initial={{ scale: 0 }}
-                    animate={{ scale: isInView ? 1 : 0 }}
-                    transition={{ delay: 0.5, duration: 0.5, type: "spring" }}
-                  />
-                  <motion.div 
-                    className="w-12 h-8 bg-gradient-to-b from-blue-600 to-blue-800 mx-auto -mt-1 rounded-b-lg shadow-xl"
-                    initial={{ scale: 0 }}
-                    animate={{ scale: isInView ? 1 : 0 }}
-                    transition={{ delay: 0.7, duration: 0.5, type: "spring" }}
-                  />
-                  {/* Floating leads */}
-                  {[0, 1, 2].map((i) => (
-                    <motion.div
-                      key={i}
-                      className={`absolute w-3 h-3 rounded-full ${
-                        i === 0 ? 'bg-yellow-400 -top-1 -left-2' :
-                        i === 1 ? 'bg-green-400 -top-0 -right-2' :
-                        'bg-cyan-400 -bottom-0 -left-1'
-                      }`}
-                      animate={isInView ? {
-                        scale: [0, 1.2, 1],
-                        opacity: [0, 1, 0.8]
-                      } : { scale: 0, opacity: 0 }}
-                      transition={{
-                        delay: 0.8 + i * 0.2,
-                        duration: 0.6,
-                        repeat: Infinity,
-                        repeatDelay: 3
-                      }}
-                    />
-                  ))}
-                </div>
-              </div>
-              
-              {/* Metrics */}
-              <div className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-400 text-xs">Lead mensili</span>
-                  <motion.span 
-                    className="text-blue-400 font-bold"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: isInView ? 1 : 0 }}
-                    transition={{ delay: 1 }}
-                  >
-                    {leadCount}+
-                  </motion.span>
-                </div>
-                <div className="h-1 bg-white/10 rounded-full overflow-hidden">
-                  <motion.div 
-                    className="h-full rounded-full bg-gradient-to-r from-blue-500 to-blue-400 shadow-lg shadow-blue-500/30"
-                    initial={{ width: "0%" }}
-                    animate={{ width: isInView ? "95%" : "0%" }}
-                    transition={{ duration: 1.5, ease: "easeOut", delay: 1.2 }}
-                  />
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Step 2: Qualification & Appointments */}
-            <motion.div 
-              className="bg-gray-900/50 border border-white/10 backdrop-blur-xl hover:bg-gray-900/60 transition-all duration-500 rounded-2xl p-6 relative"
-              variants={cardVariants}
-            >
-              <div className="absolute top-4 right-4 w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
-                2
-              </div>
-              
-              <div className="flex items-center gap-3 mb-4">
-                <motion.div 
-                  className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-orange-500/20 border border-orange-500/30"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Filter className="w-5 h-5 text-orange-400" />
-                </motion.div>
-                <div className="flex items-center gap-2">
-                  <Calendar className="w-4 h-4 text-orange-400/60" />
-                  <CheckCircle className="w-4 h-4 text-green-400/60" />
-                </div>
-              </div>
-              
-              <div className="mb-4">
-                <span className="text-orange-400 text-sm font-medium uppercase tracking-wide">qualificazione</span>
-              </div>
-              
-              <h3 className="text-xl font-bold text-white mb-3 leading-tight">
-                Filtriamo e Prenotiamo
-              </h3>
-              
-              <p className="text-gray-400 text-sm mb-6 leading-relaxed">
-                Qualifichiamo ogni lead per verificare budget e interesse reale, poi prenotiamo appuntamenti solo con prospect pronti a comprare.
-              </p>
-              
-              {/* Animated Calendar/Filter */}
-              <div className="flex justify-center mb-6">
-                <div className="relative">
-                  <motion.div 
-                    className="w-16 h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-2xl shadow-lg p-2"
-                    initial={{ scale: 0, rotate: -10 }}
-                    animate={{ 
-                      scale: isInView ? 1 : 0,
-                      rotate: isInView ? 0 : -10
-                    }}
-                    transition={{ delay: 0.5, duration: 0.6, type: "spring" }}
-                  >
-                    <div className="grid grid-cols-4 gap-0.5">
-                      {Array.from({ length: 12 }, (_, i) => (
-                        <motion.div 
-                          key={i} 
-                          className={`w-1.5 h-1.5 rounded-full ${[2,5,9].includes(i) ? 'bg-green-400' : 'bg-white/40'}`}
-                          initial={{ scale: 0 }}
-                          animate={{ scale: isInView ? 1 : 0 }}
-                          transition={{ delay: 0.8 + i * 0.05, duration: 0.3 }}
-                        />
-                      ))}
-                    </div>
-                  </motion.div>
-                  {/* Filter badge */}
-                  <motion.div 
-                    className="absolute -top-1 -right-1 w-5 h-5 bg-green-500 rounded-full flex items-center justify-center"
-                    initial={{ scale: 0 }}
-                    animate={{ scale: isInView ? 1 : 0 }}
-                    transition={{ delay: 1.2, duration: 0.4, type: "spring" }}
-                  >
-                    <CheckCircle className="w-3 h-3 text-white" />
-                  </motion.div>
-                </div>
-              </div>
-              
-              {/* Metrics */}
-              <div className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-400 text-xs">Tasso qualificazione</span>
-                  <motion.span 
-                    className="text-orange-400 font-bold"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: isInView ? 1 : 0 }}
-                    transition={{ delay: 1 }}
-                  >
-                    {qualificationRate}%
-                  </motion.span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-400 text-xs">Appuntamenti settimanali</span>
-                  <motion.span 
-                    className="text-green-400 font-bold"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: isInView ? 1 : 0 }}
-                    transition={{ delay: 1.2 }}
-                  >
-                    {appointmentsCount}+
-                  </motion.span>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Step 3: Sales Coordination */}
-            <motion.div 
-              className="bg-gray-900/50 border border-white/10 backdrop-blur-xl hover:bg-gray-900/60 transition-all duration-500 rounded-2xl p-6 relative"
-              variants={cardVariants}
-            >
-              <div className="absolute top-4 right-4 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
-                3
-              </div>
-              
-              <div className="flex items-center gap-3 mb-4">
-                <motion.div 
-                  className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-green-500/20 border border-green-500/30"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Handshake className="w-5 h-5 text-green-400" />
-                </motion.div>
-                <div className="flex items-center gap-2">
-                  <Users className="w-4 h-4 text-green-400/60" />
-                  <TrendingUp className="w-4 h-4 text-yellow-400/60" />
-                </div>
-              </div>
-              
-              <div className="mb-4">
-                <span className="text-green-400 text-sm font-medium uppercase tracking-wide">coordinamento</span>
-              </div>
-              
-              <h3 className="text-xl font-bold text-white mb-3 leading-tight">
-                Gestiamo le Vendite
-              </h3>
-              
-              <p className="text-gray-400 text-sm mb-6 leading-relaxed">
-                Formiamo il tuo team di vendita con script e tecniche comprovate, o gestiamo direttamente noi le chiamate per chiudere le vendite.
-              </p>
-              
-              {/* Animated Handshake/Success */}
-              <div className="flex justify-center mb-6">
-                <div className="relative">
-                  <motion.div 
-                    className="w-16 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-2xl shadow-lg flex items-center justify-center"
-                    initial={{ scale: 0 }}
-                    animate={{ scale: isInView ? 1 : 0 }}
-                    transition={{ delay: 0.5, duration: 0.6, type: "spring" }}
-                  >
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      animate={{ scale: isInView ? 1 : 0 }}
-                      transition={{ delay: 0.8, duration: 0.4 }}
-                    >
-                      <Handshake className="w-6 h-6 text-white" />
-                    </motion.div>
-                  </motion.div>
-                  {/* Success indicators */}
-                  <motion.div 
-                    className="absolute -top-1 -right-1 w-4 h-4 bg-yellow-400 rounded-full flex items-center justify-center text-xs"
-                    initial={{ scale: 0, rotate: -45 }}
-                    animate={{ 
-                      scale: isInView ? 1 : 0,
-                      rotate: isInView ? 0 : -45
-                    }}
-                    transition={{ delay: 1.2, duration: 0.5, type: "spring" }}
-                  >
-                    💰
-                  </motion.div>
-                  <motion.div 
-                    className="absolute -bottom-1 -left-1 w-4 h-4 bg-blue-400 rounded-full flex items-center justify-center text-xs"
-                    initial={{ scale: 0, rotate: 45 }}
-                    animate={{ 
-                      scale: isInView ? 1 : 0,
-                      rotate: isInView ? 0 : 45
-                    }}
-                    transition={{ delay: 1.4, duration: 0.5, type: "spring" }}
-                  >
-                    📈
-                  </motion.div>
-                </div>
-              </div>
-              
-              {/* Metrics */}
-              <div className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-400 text-xs">Tasso di chiusura</span>
-                  <motion.span 
-                    className="text-green-400 font-bold"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: isInView ? 1 : 0 }}
-                    transition={{ delay: 1 }}
-                  >
-                    {closingRate}%
-                  </motion.span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-400 text-xs">Vendite mensili</span>
-                  <motion.span 
-                    className="text-yellow-400 font-bold"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: isInView ? 1 : 0 }}
-                    transition={{ delay: 1.2 }}
-                  >
-                    {salesCount}+
-                  </motion.span>
-                </div>
-              </div>
-            </motion.div>
-
-          </motion.div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   )
 } 

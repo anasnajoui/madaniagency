@@ -27,53 +27,29 @@ export const ContainerScroll = ({
   }, []);
 
   const scaleDimensions = () => {
-    return isMobile ? [0.7, 0.9] : [1.05, 1];
+    return isMobile ? [0.8, 0.95] : [1.05, 1];
   };
 
-  const rotate = useTransform(scrollYProgress, [0, 1], [20, 0]);
+  const rotateDimensions = () => {
+    return isMobile ? [15, 0] : [20, 0];
+  };
+
+  const translateDimensions = () => {
+    return isMobile ? [0, -50] : [0, -100];
+  };
+
+  const rotate = useTransform(scrollYProgress, [0, 1], rotateDimensions());
   const scale = useTransform(scrollYProgress, [0, 1], scaleDimensions());
-  const translate = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const translate = useTransform(scrollYProgress, [0, 1], translateDimensions());
 
-  // Render static tilted version on mobile
-  if (isMobile) {
-    return (
-      <div className="h-[60rem] flex items-center justify-center relative p-2">
-        <div className="py-10 w-full relative flex items-center justify-center">
-          <motion.div
-            className="max-w-3xl mx-auto transform -rotate-12 scale-75"
-            initial={{ opacity: 0, y: 50, rotate: -20 }}
-            animate={{ 
-              opacity: 1, 
-              y: 0, 
-              rotate: -12,
-              transition: {
-                duration: 1.2,
-                ease: "easeOut",
-                delay: 0.5
-              }
-            }}
-            whileInView={{ 
-              scale: 0.8,
-              transition: { duration: 0.3 }
-            }}
-          >
-            <div className="h-[30rem] w-full overflow-hidden rounded-2xl">
-              {children}
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    );
-  }
-
-  // Render animated scroll version on desktop
+  // Use the same animated scroll version for both mobile and desktop
   return (
     <div
-      className="h-[60rem] md:h-[80rem] flex items-center justify-center relative p-2 md:p-20"
+      className="h-[80rem] md:h-[80rem] flex items-center justify-center relative p-2 md:p-20"
       ref={containerRef}
     >
       <div
-        className="py-10 md:py-40 w-full relative"
+        className="py-20 md:py-40 w-full relative"
         style={{
           perspective: "1000px",
         }}
@@ -116,7 +92,7 @@ export const Card = ({
         rotateX: rotate,
         scale,
       }}
-      className="max-w-5xl -mt-12 mx-auto h-[30rem] md:h-[40rem] w-full"
+      className="max-w-5xl mt-8 md:-mt-12 mx-auto h-[35rem] md:h-[40rem] w-full"
     >
       <div className="h-full w-full overflow-hidden">
         {children}

@@ -161,13 +161,26 @@ export function Features() {
                       animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : -20 }}
                       transition={{ duration: 0.8 }}
                     >
+                        <div className="inline-flex items-center justify-center mb-6">
+                          <div 
+                            className="px-6 py-3 rounded-full border"
+                            style={{
+                              background: "linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0.08) 100%)",
+                              borderColor: 'rgba(59, 130, 246, 0.3)',
+                              backdropFilter: "blur(10px)",
+                              WebkitBackdropFilter: "blur(10px)",
+                            }}
+                          >
+                            <span className="text-blue-400 text-sm font-semibold tracking-wide">Sistema All-in-One</span>
+                          </div>
+                        </div>
         
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tight">
+                        <h2 className="section-title mb-4">
                             Semplicemente i
                             <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent"> Migliori.</span>
                         </h2>
                         
-                        <p className="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                        <p className="section-subtitle max-w-2xl mx-auto">
                         Un sistema completo. Dal lead alla vendita ci occupiamo di tutto.
                         </p>
                     </motion.div>
@@ -317,7 +330,7 @@ export function Features() {
                             </Card>
                         </motion.div>
 
-                        {/* Team Management Card */}
+                        {/* AI Sales Training Card */}
                         <motion.div className="col-span-12 sm:col-span-6 lg:col-span-3" variants={cardVariants}>
                             <Card className="h-full relative overflow-hidden bg-gray-900/50 border border-white/10 backdrop-blur-xl hover:bg-gray-900/60 transition-all duration-500 rounded-2xl">
                                 <CardContent className="p-4 h-full">
@@ -325,65 +338,73 @@ export function Features() {
                                         <motion.div 
                                           className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-purple-500/20 border border-purple-500/30"
                                           whileHover={{ scale: 1.1, rotate: 5 }}
+                                          animate={isInView ? { 
+                                            boxShadow: ["0 0 0 rgba(168, 85, 247, 0)", "0 0 20px rgba(168, 85, 247, 0.4)", "0 0 0 rgba(168, 85, 247, 0)"]
+                                          } : {}}
+                                          transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}
                                         >
                                             <Users className="w-4 h-4 text-purple-400" />
                                         </motion.div>
-                                        <Award className="w-4 h-4 text-purple-400/60" />
+                                        <div className="text-purple-400/80 text-xs font-bold">AI</div>
                                         <CheckCircle className="w-4 h-4 text-green-400/60" />
                                     </div>
                                     <h3 className="text-lg font-bold text-white mb-1">
-                                        Team gestito da noi
+                                        AI Sales Training
                                     </h3>
                                     <p className="text-xs text-gray-400 mb-4">
-                                        Formiamo il tuo team
+                                        Trasformiamo venditori in top performer
                                     </p>
                                     
-                                    {/* Team Avatars with stagger animation */}
-                                    <div className="flex -space-x-2 mb-3">
-                                        {Array.from({ length: 6 }, (_, index) => {
-                                          const faceImages = [
-                                            'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face',
-                                            'https://images.unsplash.com/photo-1494790108755-2616b612b977?w=100&h=100&fit=crop&crop=face',
-                                            'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face',
-                                            'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face',
-                                            'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face',
-                                          ];
-                                          
-                                          return (
-                                            <motion.div
-                                              key={index}
-                                              className="w-7 h-7 rounded-full border-2 border-gray-900 overflow-hidden relative"
-                                              initial={{ scale: 0, x: -20 }}
-                                              animate={{ 
-                                                scale: isInView ? 1 : 0, 
-                                                x: isInView ? 0 : -20 
-                                              }}
-                                              transition={{ 
-                                                delay: index * 0.1 + 0.8,
-                                                duration: 0.4,
-                                                type: "spring",
-                                                stiffness: 200
-                                              }}
-                                            >
-                                              {index < 5 ? (
-                                                <img
-                                                  src={faceImages[index]}
-                                                  alt={`Team member ${index + 1}`}
-                                                  className="w-full h-full object-cover"
+                                    {/* AI Training Progress */}
+                                    <div className="space-y-3 mb-4">
+                                        <div className="bg-white/5 rounded-lg p-2 border border-purple-500/20">
+                                            <div className="flex items-center justify-between mb-1">
+                                                <span className="text-xs text-gray-400">Tempo formazione</span>
+                                                <motion.span 
+                                                  className="text-purple-400 font-bold text-xs"
+                                                  initial={{ opacity: 0 }}
+                                                  animate={{ opacity: isInView ? 1 : 0 }}
+                                                  transition={{ delay: 0.8 }}
+                                                >
+                                                  -75%
+                                                </motion.span>
+                                            </div>
+                                            <div className="h-1.5 bg-gray-800 rounded-full overflow-hidden">
+                                                <motion.div 
+                                                  className="h-full bg-gradient-to-r from-purple-500 to-purple-400 rounded-full"
+                                                  initial={{ width: "0%" }}
+                                                  animate={{ width: isInView ? "75%" : "0%" }}
+                                                  transition={{ duration: 1.5, ease: "easeOut", delay: 0.8 }}
                                                 />
-                                              ) : (
-                                                <div className="w-full h-full bg-white/10 flex items-center justify-center text-gray-400 text-xs font-bold">
-                                                  +{teamCount - 5}
-                                                </div>
-                                              )}
-                                            </motion.div>
-                                          );
-                                        })}
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="bg-white/5 rounded-lg p-2 border border-green-500/20">
+                                            <div className="flex items-center justify-between mb-1">
+                                                <span className="text-xs text-gray-400">Tasso chiusura</span>
+                                                <motion.span 
+                                                  className="text-green-400 font-bold text-xs"
+                                                  initial={{ opacity: 0 }}
+                                                  animate={{ opacity: isInView ? 1 : 0 }}
+                                                  transition={{ delay: 1.0 }}
+                                                >
+                                                  +180%
+                                                </motion.span>
+                                            </div>
+                                            <div className="h-1.5 bg-gray-800 rounded-full overflow-hidden">
+                                                <motion.div 
+                                                  className="h-full bg-gradient-to-r from-green-500 to-green-400 rounded-full"
+                                                  initial={{ width: "0%" }}
+                                                  animate={{ width: isInView ? "90%" : "0%" }}
+                                                  transition={{ duration: 1.5, ease: "easeOut", delay: 1.0 }}
+                                                />
+                                            </div>
+                                        </div>
                                     </div>
                                     
                                     <div className="text-xs text-gray-400">
                                         <div className="flex justify-between">
-                                            <span>Venditori formati:</span>
+                                            <span>Venditori certificati:</span>
                                             <motion.span 
                                               className="text-white font-semibold"
                                               initial={{ opacity: 0 }}
