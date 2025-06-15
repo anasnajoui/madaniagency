@@ -11,15 +11,13 @@ export const HormoziSection = () => {
     offset: ["start end", "end start"]
   })
 
-  // Integrated scroll animations for image and title
-  const imageY = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [100, -20, -40, -80])
-  const imageScale = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.8, 1.1, 1.05, 1])
-  const imageRotate = useTransform(scrollYProgress, [0, 0.5, 1], [8, -2, 0])
-  const imageOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.3, 1, 1, 0.9])
+  // Simplified scroll animations for better performance
+  const imageY = useTransform(scrollYProgress, [0, 1], [50, -30])
+  const imageScale = useTransform(scrollYProgress, [0, 1], [0.9, 1.05])
+  const imageOpacity = useTransform(scrollYProgress, [0, 0.3, 1], [0.5, 1, 1])
   
-  // Title animations
-  const titleY = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, -10, -20, -40])
-  const titleScale = useTransform(scrollYProgress, [0, 0.3, 1], [1, 1.05, 1])
+  // Simplified title animations
+  const titleY = useTransform(scrollYProgress, [0, 1], [0, -20])
   
   // Background elements
   const bgY = useTransform(scrollYProgress, [0, 1], [0, -50])
@@ -52,7 +50,7 @@ export const HormoziSection = () => {
               className="inline-flex items-center gap-3 bg-gradient-to-r from-orange-500/20 to-purple-500/20 text-orange-300 px-4 py-2 rounded-full font-bold text-sm mb-6 border border-orange-500/30"
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
             >
               <span className="w-2 h-2 bg-orange-400 rounded-full animate-pulse"></span>
               PARTNERSHIP UFFICIALE
@@ -65,16 +63,14 @@ export const HormoziSection = () => {
             <motion.h1 
               className="text-3xl md:text-5xl lg:text-6xl font-black tracking-tight leading-tight mb-6"
               style={{ 
-                y: titleY,
-                scale: titleScale
+                y: titleY
               }}
             >
               <span className="text-white" style={{textShadow: '0 4px 12px rgba(0, 0, 0, 0.4)'}}>VERSIONI </span>
               <span 
                 className="bg-gradient-to-r from-green-400 via-white to-red-400 bg-clip-text text-transparent"
                 style={{
-                  filter: 'drop-shadow(0 2px 8px rgba(255, 255, 255, 0.3))',
-                  textShadow: '0 0 20px rgba(255, 255, 255, 0.8)'
+                  filter: 'drop-shadow(0 2px 4px rgba(255, 255, 255, 0.2))'
                 }}
               >
                 ITALIANE
@@ -92,7 +88,7 @@ export const HormoziSection = () => {
               }}
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
+              transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
             >
               Grazie alla nostra partnership con <span className="font-bold" style={{color: '#60a5fa', textShadow: '0 0 12px rgba(96, 165, 250, 0.5)'}}>Acquisition.com</span>, 
               i bestseller di Alex Hormozi sono ora disponibili in <span className="font-bold" style={{color: '#fb923c', textShadow: '0 0 12px rgba(251, 146, 60, 0.5)'}}>italiano</span>
@@ -102,7 +98,7 @@ export const HormoziSection = () => {
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
             >
               <a
                 href="https://www.amazon.it/stores/author/B099H3YM3R?ingress=0&visitId=62a7704e-a604-4c2c-ba50-626b7d309d32&ref_=sr_ntt_srch_lnk_1"
@@ -133,7 +129,7 @@ export const HormoziSection = () => {
               className="flex items-center justify-center gap-3 mb-4"
               initial={{ opacity: 0, y: -20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
+              transition={{ duration: 0.4, delay: 0.4, ease: "easeOut" }}
             >
               <div className="relative">
                 {/* White neon glow behind Acquisition logo */}
@@ -153,7 +149,7 @@ export const HormoziSection = () => {
                   height={80}
                   className="relative z-10"
                   style={{
-                    filter: "brightness(2) contrast(1.2) drop-shadow(0 0 15px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 30px rgba(255, 255, 255, 0.4))"
+                    filter: "brightness(1.5) drop-shadow(0 0 10px rgba(255, 255, 255, 0.6))"
                   }}
                 />
               </div>
@@ -184,7 +180,7 @@ export const HormoziSection = () => {
                   height={30}
                   className="relative z-10"
                   style={{
-                    filter: "brightness(2.5) contrast(1.3) drop-shadow(0 0 12px rgba(255, 255, 255, 0.9)) drop-shadow(0 0 25px rgba(255, 255, 255, 0.5))"
+                    filter: "brightness(1.8) drop-shadow(0 0 8px rgba(255, 255, 255, 0.7))"
                   }}
                 />
               </div>
@@ -195,14 +191,12 @@ export const HormoziSection = () => {
               style={{ 
                 y: imageY,
                 scale: imageScale,
-                rotate: imageRotate,
                 opacity: imageOpacity
               }}
             >
-              {/* Background glow effects for PNG */}
-              <div className="absolute inset-0 -m-8">
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-r from-blue-500/25 via-purple-500/25 to-violet-500/25 rounded-full blur-3xl"></div>
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[100%] h-[100%] bg-gradient-to-r from-indigo-500/20 via-purple-500/20 to-blue-500/20 rounded-full blur-2xl"></div>
+              {/* Simplified background glow */}
+              <div className="absolute inset-0 -m-4">
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[100%] h-[100%] bg-gradient-to-r from-blue-500/15 via-purple-500/15 to-violet-500/15 rounded-full blur-xl"></div>
               </div>
               
               {/* Decorative background circle */}

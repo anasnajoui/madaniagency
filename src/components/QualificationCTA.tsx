@@ -194,6 +194,7 @@ export default function QualificationCTA({ className = '' }: QualificationCTAPro
                       }}
                     />
                     <span className="text-white font-bold text-base lg:text-lg">Prenota la tua diagnosi AI</span>
+                    <span className="text-blue-400 text-sm font-medium ml-2">(45 min • Gratuita)</span>
                     <ArrowRight 
                       className="w-4 h-4 lg:w-5 lg:h-5 text-blue-400 hidden sm:block lg:block" 
                       style={{
@@ -219,7 +220,7 @@ export default function QualificationCTA({ className = '' }: QualificationCTAPro
 
               {/* Right Side - Mobile: Simplified Calendar, Desktop: Full Version */}
               <motion.div 
-                className="relative max-w-sm mx-auto lg:mx-0"
+                className="relative max-w-md mx-auto lg:mx-0"
                 ref={calendarRef}
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: isInView ? 1 : 0, scale: isInView ? 1 : 0.95 }}
@@ -252,27 +253,13 @@ export default function QualificationCTA({ className = '' }: QualificationCTAPro
                     />
                   </div>
 
-                  {/* Calendar Header - Simplified on Mobile */}
-                  <div 
-                    className="relative z-20 px-3 py-2 lg:px-5 lg:py-3 border-b"
-                    style={{
-                      background: "linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%)",
-                      borderColor: 'rgba(255, 255, 255, 0.1)'
-                    }}
-                  >
-                    <div className="text-center">
-                      <h3 className="text-white font-bold text-sm lg:text-base mb-1">Diagnosi AI</h3>
-                      <p className="text-gray-400 text-xs">45 min • Gratuita</p>
-                    </div>
-                  </div>
-
                   <iframe 
                     key={iframeKey}
                     src={`https://calendar.madani.agency?hide_event_type_details=1&hide_gdpr_banner=1&embed_type=Inline&embed_domain=madani.agency&t=${iframeKey}`}
-                    className="w-full border-0 block relative z-10"
+                    className="w-full h-full border-0 block relative z-10"
                     style={{
-                      height: '550px',
-                      minHeight: '550px'
+                      height: '715px',
+                      minHeight: '715px'
                     }}
                     title="Prenota Appuntamento - Madani Agency"
                     onLoad={() => setLoading(false)}

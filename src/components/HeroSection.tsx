@@ -39,10 +39,10 @@ export function HeroSection() {
         <div className="container mx-auto px-4">
           <div className="flex gap-8 pt-32 pb-16 lg:pt-48 lg:pb-24 items-center justify-center flex-col">
             <div className="flex gap-4 flex-col">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl max-w-5xl tracking-tighter text-center font-regular leading-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl max-w-5xl tracking-tight text-center font-semibold leading-tight">
                 <div className="flex flex-col">
                   <span 
-                    className="text-spektr-cyan-50"
+                    className="text-spektr-cyan-50 font-normal"
                     style={{
                       textShadow: '0 0 20px rgba(96, 165, 250, 0.6), 0 2px 8px rgba(0, 0, 0, 0.4)',
                       filter: 'drop-shadow(0 0 12px rgba(96, 165, 250, 0.3))'
@@ -50,9 +50,9 @@ export function HeroSection() {
                   >
                     <span className="block sm:inline">Il tuo nuovo</span>
                     <span className="block sm:inline sm:ml-3">
-                      reparto vendite{' '}
+                      reparto vendite
                       <span 
-                        className="animate-pulse"
+                        className="animate-pulse inline ml-1"
                         style={{
                           filter: 'drop-shadow(0 0 15px rgba(255, 193, 7, 0.8)) drop-shadow(0 0 30px rgba(255, 193, 7, 0.4))',
                           textShadow: '0 0 20px rgba(255, 193, 7, 0.6)',
@@ -106,13 +106,13 @@ export function HeroSection() {
                 }}
               >
                 <ShimmerButton className="flex items-center justify-center">
-                  <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg">
+                  <span className="whitespace-pre-wrap text-center text-base font-semibold leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg">
                     Qualificati ora →
                   </span>
                 </ShimmerButton>
               </a>
               <div className="flex flex-col sm:flex-row gap-4 items-center">
-                <p className="text-xs text-muted-foreground">meno di 1 min</p>
+                <p className="text-sm text-muted-foreground font-medium">meno di 1 min</p>
               </div>
             </div>
           </div>
