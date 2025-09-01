@@ -161,7 +161,7 @@ export const Footer = () => {
             {/* Social & Back to Top */}
             <div className="flex items-center justify-center gap-4">
               <a 
-                href="https://www.instagram.com/ceo.madani"
+                href="https://www.instagram.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gray-700 transition-colors"
